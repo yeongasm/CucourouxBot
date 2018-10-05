@@ -1,0 +1,4 @@
+{
+    "pageID": "https://gbf.wiki/api.php?action=parse&format=json&page=",
+    "wikiURL": "https://gbf.wiki/api.php?action=query&prop=revisions&rvprop=content&format=json&titles="
+}
