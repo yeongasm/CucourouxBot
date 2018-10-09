@@ -1,0 +1,49 @@
+{
+    "name": "Jeanne d'Arc",
+    "title": "Holy Maiden",
+    "gender": "female",
+    "obtain": "",
+    "five_star": "yes",
+    "rarity": "SSR",
+    "element": "Light",
+    "type": "Balanced",
+    "race": "Human",
+    "join_weapon": "",
+    "weapon": "Spear",
+    "attack": {
+        "min_atk": "1560",
+        "max_atk": "8290",
+        "flb_atk": "",
+        "bonus_atk": ""
+    },
+    "hp": {
+        "min_hp": "290",
+        "max_hp": "1550",
+        "flb_hp": "",
+        "bonus_hp": ""
+    },
+    "ougi": {
+        "ougi1_name": "Holy Spear Marte",
+        "ougi1_desc": "Massive Light damage to a foe.",
+        "ougi2_name": "",
+        "ougi2_desc": "",
+        "ougi3_name": "",
+        "ougi3_desc": "",
+        "ougi4_name": "",
+        "ougi4_desc": ""
+    },
+    "skill": {
+        "a1_name": "Reversal",
+        "a2_name": "Encouragement ",
+        "a3_name": "Advent Eternal",
+        "a4_name": ""
+    },
+    "ability": {
+        "sa_name": "La Pucelle",
+        "sa_desc": "",
+        "sa2_name": "The Battle Standard",
+        "sa2_desc": "5% chance for a 1",
+        "sa_emp_desc": ""
+    },
+    "wiki_link": "https:/gbf.wiki/Jeanne d'Arc"
+}

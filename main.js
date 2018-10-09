@@ -22,38 +22,28 @@ fs.access(__logdir + filename, fs.constants.R_OK, err => {
     }
 });
 
-// client.on('ready', () => {
-//     console.log('Cucouroux up and ready to go!');
-// });
+client.on('ready', () => {
+    console.log('Cucouroux up and ready to go!');
+});
 
-// client.on('message', message => {
-//     if (!message.content.startsWith(prefix)) return;
+client.on('message', message => {
+    if (!message.content.startsWith(prefix)) return;
 
-//     if (message.author.bot) return;
+    if (message.author.bot) return;
 
-//     let context = message.content.split(prefix)[1];
+    let regex = new RegExp(`(~)(\\w+)(\\s)*(\\w+)*`);
 
-//     let request = require('request');
+    let result = regex.exec(message.content);
+    let obj = result[2];
+    let ver = "";
+    
+    if (result[4]) {
+        ver = result[4];
+    }
 
-//     request.post(config.wikiURL + context, (err, response, data) => {
-//         if (err) {
-//             throw err;
-//         }
+    return message.channel.send('php',`char: ${obj}\nver: ${ver}`);
+    console.log('char: '+obj+'\nvers: '+ver);
 
-//         fs.appendFile('./components/character.xml', data, err => {
-//             if (err) {
-//                 throw err;
-//             }
-//         });
-//     });
-    // message.channel.send(`Keyword: ${context}`);
-    // wiki.getArticle(context, (err, data) => {
-    //     if (err) {
-    //         throw err;
-    //     }
+});
 
-    //     fs.appendFile('./components/character.json', data, err => {if (err) throw err;});
-    // });
-// });
-
-// client.login(config.token);
+client.login(config.token);

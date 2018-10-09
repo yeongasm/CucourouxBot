@@ -1,0 +1,49 @@
+{
+    "name": "Jeanne d'Arc",
+    "title": "Seaside Holy Maiden",
+    "gender": "female",
+    "obtain": "",
+    "five_star": "no",
+    "rarity": "SSR",
+    "element": "Wind",
+    "type": "Balanced",
+    "race": "Human",
+    "join_weapon": "",
+    "weapon": "Sabre",
+    "attack": {
+        "min_atk": "",
+        "max_atk": "7100",
+        "flb_atk": "",
+        "bonus_atk": ""
+    },
+    "hp": {
+        "min_hp": "",
+        "max_hp": "1780",
+        "flb_hp": "",
+        "bonus_hp": ""
+    },
+    "ougi": {
+        "ougi1_name": "Fierte Jolie",
+        "ougi1_desc": "Massive Wind damage to a foe.",
+        "ougi2_name": "",
+        "ougi2_desc": "",
+        "ougi3_name": "",
+        "ougi3_desc": "",
+        "ougi4_name": "",
+        "ougi4_desc": ""
+    },
+    "skill": {
+        "a1_name": "Reversal Tide",
+        "a2_name": "Salvation",
+        "a3_name": "Banner of the Brave",
+        "a4_name": ""
+    },
+    "ability": {
+        "sa_name": "La Pucelle",
+        "sa_desc": "",
+        "sa2_name": "Unswayed",
+        "sa2_desc": "",
+        "sa_emp_desc": ""
+    },
+    "wiki_link": "https:/gbf.wiki/Jeanne d'Arc (Themed)"
+}
