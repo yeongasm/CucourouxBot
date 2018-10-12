@@ -1,59 +1,36 @@
 const Discord = require('discord.js');
 const config = require('./config.json');
-const fs = require('fs');
-const request = require('request')
-
-const __logdir = "./logs/";
-const filename = "log.txt";
-const prefix = '~';
+const Bot = require('./cucouroux/cucouroux.js');
 
 const client = new Discord.Client();
-
-// Creating a log file, not sure what it will be used for yet!
-fs.access(__logdir + filename, fs.constants.R_OK, err => {
-    if (err) {
-        console.log(`${filename} 'not found! Making one now~'`);
-        fs.writeFile(__logdir + filename, '[LOGS]', (err) => {
-            if (err)
-                throw err;
-    
-            console.log('Log file successfully created');
-        });    
-    }
-});
 
 client.on('ready', () => {
     console.log('Cucouroux up and ready to go!');
 });
 
 client.on('message', message => {
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(config.prefix)) return;
 
     if (message.author.bot) return;
 
-    let input_regex = new RegExp(`(~)(\\w+)(\\s)*(\\w+)*`);
+    let cucouroux = new Bot('./logs/');
+    cucouroux.Listen(message.content);
+    // let msg = "";
+    // // Should there be a feature to allow concatenation of certain filters?
+    // if (!subfilter.length) {
+    //      msg = ResponseMessage(res_file[0]);
+    // } else if (subfilter === 'skill') {
+    //     // Display only skill portion of the character information.
+    // } else if (subfilter === 'ability') {
+    //     // Display only ability portion of the character information.
+    // } else if (subfilter === 'notes') {
+    //     // Display only gameplay notes portion of the character information.
+    // } else {
+    //     Log("No such filter parameter exist!")
+    //     msg = "ごめんなさい! No such filter parameters exist :(";
+    // }
 
-    let result = input_regex.exec(message.content);
-    let obj = result[2];
-    let ver = "";
-    
-    if (result[4]) {
-        ver = result[4];
-    }
-
-    let filter_regex = (!ver.length) ? `(${obj}[A-Za-z\\s'.]*)(.json)` : `(${obj}[A-Za-z\\s']*)(\\(${ver}\\)){0,1}(.json)`;
-    let files;
-    files = fs.readdirSync('./dump_data/characters/');
-    console.log(ver);
-    let parser = new RegExp(filter_regex, 'i');
-    let res_file = parser.exec(files.toString());
-
-    if (!res_file) {
-        return message.channel.send('ごめんなさい! Cucouroux wasn\'t able to find for it :(');
-    }
-
-    let msg = ResponseMessage(res_file[0]);
-    return message.channel.send(msg, {code: true});
+    return message.channel.send(cucouroux.Reply());
     //console.log(res_arr);
 
     //let resobj = JSON.parse(fs.readFileSync('./dump_data/characters/' + filename, 'utf8'));
@@ -63,10 +40,3 @@ client.on('message', message => {
 
 client.login(config.token);
 
-function ResponseMessage(character_file) {
-    let obj = JSON.parse(fs.readFileSync(`dump_data/characters/${character_file}`, 'utf8'));
-    
-    return `
-    Name    : ${obj.name}   Gender: ${obj.gender}
-    Element : ${obj.element}`;
-}
