@@ -73,10 +73,24 @@ class Bot {
 
         let result = input_regex.exec(message);
         let obj = result[2];
-        let ver = (this.IsVersion(result[4])) ? result[4] : '';
-        let subfilter = (this.IsFilter(result[6])) ? result[6] : (this.IsFilter(result[4])) ? result[4] : '';
 
-        let ver_regex = (this.IsVersion(ver)) ? `(${obj}[A-Za-z\\s'.]*)(.json)` : `(${obj}[A-Za-z\\s']*)(\\(${ver}\\)){0,1}(.json)`;
+        let ver = '';
+        if (result[4]) {
+            ver = (this.IsVersion(result[4])) ? result[4] : '';
+        }
+        
+        let subfilter = '';
+
+        if (result[6]) {
+            subfilter = (this.IsFilter(result[6])) ? result[6] : (this.IsFilter(result[4])) ? result[4] : '';
+        }
+
+        let ver_regex;
+
+        if (ver.length) {
+            ver_regex = (this.IsVersion(ver)) ? `(${obj}[A-Za-z\\s'.]*)(.json)` : `(${obj}[A-Za-z\\s']*)(\\(${ver}\\)){0,1}(.json)`;
+        }
+        
         let files;
         files = fs.readdirSync('./dump_data/characters/');
         let parser = new RegExp(ver_regex, 'i');
